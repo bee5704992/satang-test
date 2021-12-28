@@ -3,6 +3,7 @@ import {useParams, Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import { getCurrencyPair } from '../redux/dispatch/currencyPair';
 import { Layout, Menu } from 'antd';
+import {Statistic, Row, Col, Button} from 'antd'
 
 const { Sider } = Layout;
 
@@ -28,11 +29,19 @@ const Market = () => {
         return () => clearInterval(interval);
     }, [currencyPair,dispatch]);
 
+    const changeIcon = () => {
+        if(currencyPair === 'BTC_THB' || currencyPair === 'btc_thb')
+            return 'https://storage.googleapis.com/satang-pro/public/assets/icons/coins/btc.png'
+        if(currencyPair === 'BUSD_THB' || currencyPair === 'busd_thb')
+            return 'https://storage.googleapis.com/satang-pro/public/assets/icons/coins/busd.png'
+        if(currencyPair === 'USDT_THB' || currencyPair === 'usdt_thb')
+            return 'https://storage.googleapis.com/satang-pro/public/assets/icons/coins/usdt.png'
+    }
 
     return (
 
         <Layout>
-            <Sider width={200} className="site-layout-background">
+            <Sider className="site-layout-background">
                 <Menu
                 mode="inline"
                 defaultSelectedKeys={['1']}
@@ -45,10 +54,21 @@ const Market = () => {
                 </Menu>
             </Sider>
 
-            <div style={{margin:'24px'}}>
-                <p>{symbol ? symbol.replace('_','/').toUpperCase() : null}</p>
-                <p>{lastPrice}</p>
-                <p>{volume ? `Volume: ${volume}` : null}</p>
+            <div className='bg-main' style={{margin:'24px', width: '100%', height: '100%'}}>
+                <div style={{padding:'24px'}}>
+                    <Row>
+                        <Col span={20}>
+                            <Statistic title={symbol ? symbol.replace('_','/').toUpperCase() : null} value={lastPrice} />
+                            <Statistic title={volume ? `Volume:` : null} value={volume ? `${volume}` : null} />
+                        </Col>
+                        <Col span={4} className='currency-icon' style={{textAlign:'end'}}>
+                            <img src={changeIcon()} />
+                        </Col>
+                    </Row>
+                 
+                    <Button type='primary' style={{marginTop:'24px' }} >See Details</Button>
+                   
+                </div>
             </div>
         </Layout>
 

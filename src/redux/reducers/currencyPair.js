@@ -4,7 +4,7 @@ const initialState = {
     details: {}
 }
 
-export default (state = initialState, action) => {
+const currencyPair = (state = initialState, action) => {
     switch(action.type){
         case ACTIONS.SET_CURRENCY_PAIR:
             return {
@@ -16,3 +16,4 @@ export default (state = initialState, action) => {
     }
 }
 
+export default currencyPair

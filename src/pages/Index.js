@@ -34,7 +34,7 @@ const Index = () => {
                 </SubMenu>
                 </Menu>
             </Sider>
-                <div style={{margin:'24px'}}>index page</div>
+                <div className='bg-main' style={{margin:'24px', width: '100%'}}>index page</div>
             </Layout>
     )
 }

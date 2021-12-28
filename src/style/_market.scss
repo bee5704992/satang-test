@@ -1,0 +1,17 @@
+$bg-main: #ffffff;
+
+.bg-main {
+ background-color: $bg-main;
+}
+
+@media screen and (max-width: 600px) {
+    .ant-layout-sider{
+        max-width: 120px !important;
+        min-width: 120px !important;
+    }
+}
+@media screen and (max-width: 370px) {
+    .currency-icon{
+        display: none;
+    }
+}
